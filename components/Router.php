@@ -67,15 +67,8 @@ class Router
                     break;
                 }
 
-            }else{
-
-//                если запрос пуст - переходим на главную страницу
-
-                require_once(ROOT.'/controllers/NewsController.php');
-                $startPage = new NewsController();
-                $startPage->actionIndex();
             }
         }
     }
-    
+
 }
