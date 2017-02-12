@@ -11,8 +11,11 @@
         <p><?php echo $newsItem['content']; ?></p>
 
         <div id="comments" >
-            <h2>Comments</h2>
+            <h2>Комментарии:</h2>
             <ul>
+
+<?php if(!empty($commentsList)): ?>
+
                 <?php foreach($commentsList as $comment): ?>
                 <li>
                     <article>
@@ -28,6 +31,21 @@
                     </article>
                 </li>
                 <?php endforeach; ?>
+
+<?php else: ?>
+
+                <li>
+                    <article>
+                        <header>
+                            <address>
+                                <h2>Комментариев пока что нет. Будь первым!</h2>
+                            </address>
+                        </header>
+                    </article>
+                </li>
+
+<?php endif; ?>
+
             </ul>
             <h2>Write A Comment</h2>
             <form action="#" method="post">

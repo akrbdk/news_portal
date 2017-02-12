@@ -29,7 +29,7 @@ class Comments
         $result->execute();
 
         $i = 0;
-
+        $comments = array();
         while($row = $result->fetch()){
             $comments[$i]['id'] = $row['id'];
             $comments[$i]['comment_text'] = $row['comment_text'];
