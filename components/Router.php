@@ -36,22 +36,38 @@ class Router
         foreach($this->routes as $uri_pattern => $path){
             if(preg_match("~$uri_pattern~", $uri)){
 
+//              Извлекаем внутренние параметры из маршрута
+
+                $internalRoute = preg_replace('`$uri_pattern`', $path, $uri);
+
 //                Определяем какой экшн и контроллер должен быть вызван
 
-                $segments = explode('/', $path);
+                $segments = explode('/', $internalRoute);
 
-                $controller = array_shift($segments). 'Controller';
-                $controller = ucfirst($controller);
-
+                $controller = ucfirst(array_shift($segments)). 'Controller';
                 $actionName = 'action' .ucfirst(array_shift($segments));
+                $params = $segments; //массив данных включающий в себя дополнительные параметры получаемые из адресной строки
+
+//                Ищем и подключаем файл требуемого контроллера
+
+                $controllerFile = ROOT . '/controllers/' . $controller . '.php';
+
+                if(file_exists($controllerFile)){
+                    include_once ($controllerFile); //Если файл существуем то подключаем его однократно
+                }
+
+//                Создаем экземпляр класса-контроллера и вызываем соответствующий метод
+
+                $controllerObj = new $controller;
+                $method = call_user_func_array(array($controllerObj, $actionName), $params);
+
+//                Осуществляем проверку. Если метод класса уже вызван уже используется, то тогда мы выходим из цикла
+
+                if($method != null){
+                    break;
+                }
 
             }
         }
-
-//        Подключаем файл класса-контроллера
-
-
-
-//        Создаем объект, вызываем action
     }
 }
