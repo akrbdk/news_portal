@@ -34,6 +34,7 @@ class Router
 //        Если имеются совпадения то определяем какой контроллер и экшн обрабатывают запрос
 
         foreach($this->routes as $uri_pattern => $path){
+
             if(preg_match("~$uri_pattern~", $uri)){
 
 //              Извлекаем внутренние параметры из маршрута
@@ -44,22 +45,21 @@ class Router
 
                 $segments = explode('/', $internalRoute);
 
-                $controller = ucfirst(array_shift($segments)). 'Controller';
+                $controllerName = ucfirst(array_shift($segments)). 'Controller';
                 $actionName = 'action' .ucfirst(array_shift($segments));
                 $params = $segments; //массив данных включающий в себя дополнительные параметры получаемые из адресной строки
 
 //                Ищем и подключаем файл требуемого контроллера
 
-                $controllerFile = ROOT . '/controllers/' . $controller . '.php';
-
-                if(file_exists($controllerFile)){
-                    include_once ($controllerFile); //Если файл существуем то подключаем его однократно
+                $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
+                if(file_exists($controllerFile)) {
+                    include_once($controllerFile); //Если файл существуем то подключаем его однократно
                 }
 
 //                Создаем экземпляр класса-контроллера и вызываем соответствующий метод
 
-                $controllerObj = new $controller;
-                $method = call_user_func_array(array($controllerObj, $actionName), $params);
+                    $controllerObj = new $controllerName;
+                    $method = call_user_func_array(array($controllerObj, $actionName), $params);
 
 //                Осуществляем проверку. Если метод класса уже вызван уже используется, то тогда мы выходим из цикла
 
@@ -67,6 +67,13 @@ class Router
                     break;
                 }
 
+            }else{
+
+//                если запрос пуст - переходим на главную страницу
+
+                require_once(ROOT.'/controllers/NewsController.php');
+                $startPage = new NewsController();
+                $startPage->actionIndex();
             }
         }
     }

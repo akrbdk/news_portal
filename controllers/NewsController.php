@@ -8,6 +8,7 @@
  */
 
 include_once ROOT . '/models/News.php';
+include_once ROOT . '/models/Comments.php';
 
 class NewsController
 {
@@ -27,6 +28,8 @@ class NewsController
         if($id){
 
             $newsItem = News::getNewsItemByID($id);
+
+            $commentsList = Comments::getCommentsList($id);
 
             require_once ROOT . '/views/news/view.php';
 
