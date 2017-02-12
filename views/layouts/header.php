@@ -18,7 +18,7 @@
     <header id="header" class="clear">
         <!-- ################################################################################################ -->
         <div id="logo">
-            <h1><a href="/news/index/">News Portal</a></h1>
+            <h1><a href="/news/index">News Portal</a></h1>
             <p>Тестовый новостной портал.</p>
         </div>
         <!-- ################################################################################################ -->
@@ -28,9 +28,9 @@
     <nav id="mainav" class="clear">
         <!-- ################################################################################################ -->
         <ul class="clear">
-            <li class="active"><a href="/news/index/">Home</a></li>
-            <li><a class="drop" href="#">Latest News</a></li>
-            <li><a class="drop" href="#">About Us</a></li>
+            <li class="active"><a href="/news/index">Home</a></li>
+            <li><a  href="/news/create/new">Добавить новость</a></li>
+            <li><a  href="#">About Us</a></li>
             <li><a href="#">Contacts</a></li>
             <li><a href="#">Login</a></li>
         </ul>

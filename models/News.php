@@ -54,4 +54,44 @@ class News
         return$allNews;
 
     }
+
+    public static function createNews($options)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'INSERT INTO news '
+            . '(title, short_content, content, author_name)'
+            . 'VALUES '
+            . '(:title, :short_content, :content, :author_name)';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':title', $options['title'], PDO::PARAM_STR);
+        $result->bindParam(':short_content', $options['short_content'], PDO::PARAM_STR);
+        $result->bindParam(':content', $options['content'], PDO::PARAM_STR);
+        $result->bindParam(':author_name', $options['author_name'], PDO::PARAM_STR);
+        if ($result->execute()) {
+            // Если запрос выполенен успешно, возвращаем id добавленной записи
+            return $db->lastInsertId();
+        }
+        // Иначе возвращаем 0
+        return 0;
+    }
+
+    public static function deleteNewsById($id)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'DELETE FROM news WHERE id = :id';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
+
 }

@@ -21,6 +21,7 @@
                             <p><?php echo $newsItem['short_content']; ?></p>
                         </div>
                         <p class="nospace"><a href="/news/view/<?php echo $newsItem['id']; ?>">Читать далее &raquo;</a></p>
+                        <p class="nospace"><a href="/news/delete/<?php echo $newsItem['id']; ?>">Удалить новость</a></p>
                     </article>
                 </li>
             </ul>
