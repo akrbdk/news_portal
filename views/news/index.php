@@ -13,7 +13,7 @@
                         <header>
                             <address>
                                 <h1><a href="/news/view/<?php echo $newsItem['id']; ?>"><?php echo $newsItem['title']; ?></a></h1>
-                                By <a href="#"><?php echo $newsItem['author_name']; ?></a>
+                                Аффтор: <a href="#"><?php echo $newsItem['author_name']; ?></a>
                             </address>
                             <time ><?php echo $newsItem['date']; ?></time>
                         </header>

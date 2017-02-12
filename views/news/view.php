@@ -21,7 +21,7 @@
                     <article>
                         <header>
                             <address>
-                                By <span><?php echo $comment['author'] ?></span>
+                                Аффтор: <span><?php echo $comment['author'] ?></span>
                             </address>
                             <time><?php echo $comment['date'] ?></time>
                         </header>
@@ -66,9 +66,9 @@
                     <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
                 </div>
                 <div>
-                    <input name="submit" type="submit" value="Submit Form">
+                    <input name="submit" type="submit" value="Опубликовать коммент">
                     &nbsp;
-                    <input name="reset" type="reset" value="Reset Form">
+<!--                    <input name="reset" type="reset" value="Reset Form">-->
                 </div>
             </form>
         </div>
