@@ -55,7 +55,8 @@ class NewsController
                     // Если ошибок нет
                     // Добавляем новый товар
                     $id = Comments::createComment($options, $id);
-
+                    echo 'sfghsdfgfg';
+                    echo 'sfghsdfgfg';
 
                     // Перенаправляем пользователя на главную страницу
                     header("Location: /");
